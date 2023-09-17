@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.UserMapper">
+    <resultMap id="UserMapper" type="com.example.demo.pojo.User">
+        <result property="username" column="username" jdbcType="VARCHAR"/>
+        <result property="password" column="password" jdbcType="VARCHAR"/>
+    </resultMap>
+    <insert id="insertAll">
+        INSERT INTO users VALUES (#{username}, #{password}, #{salt})
+    </insert>
+
+    <!--这里的 id 与 UserMapper 接口中名称一一对应-->
+    <select id="getPasswordByUsername" resultType="java.lang.String">
+        SELECT password FROM users WHERE username = #{username}
+    </select>
+    <select id="getAllUsername" resultType="java.lang.String">
+        SELECT username FROM users
+    </select>
+    <select id="getSaltByUsername" resultType="java.lang.String">
+        SELECT salt FROM users WHERE username = #{username}
+    </select>
+    <select id="existsByUsername" resultType="java.lang.Boolean">
+        SELECT COUNT(*) FROM users WHERE username = #{username}
+    </select>
+</mapper>
