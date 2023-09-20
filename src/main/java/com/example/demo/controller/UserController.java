@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 
 @RestController
+@CrossOrigin(origins = "http://localhost")
 public class UserController {
+
     //  这里跟使用 @Autowire 注解是一样的效果
     //  自动装配名为 UserService 的 bean
     @Resource
